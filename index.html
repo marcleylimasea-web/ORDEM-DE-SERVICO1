@@ -188,7 +188,7 @@
         } else if (tipo === "sem-conexao") {
             relato.value = "Cliente informa lentidão em sua conexão. Foram realizadas diversas configurações remotas em seu equipamento, no entanto, sua conexão não normalizou.";
             orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
-         if (tipo === "link loss") {
+        } else if (tipo === "link loss") {
             relato.value = "Cliente relata estar sem conexão, foi verificado que o status do equipamento está em link-loss o que indica um possível rompimento da fibra ou defeito no equipamento.Cliente relata estar sem conexão, foi verificado que o status do equipamento está em link-loss o que indica um possível rompimento da fibra ou defeito no equipamento.";
             orientacao.value = "Verificar a integridade do equipamento ,dos cabos e dos conectores. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
         } else {
@@ -260,6 +260,7 @@ Criador: Marcley Lima
 
 </body>
 </html>
+
 
 
 
