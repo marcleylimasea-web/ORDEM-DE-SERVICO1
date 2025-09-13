@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerador de Ordem de Serviço</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f3f3f3;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 16px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #2b7cff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056c1;
+        }
+
+        .output {
+            background-color: white;
+            padding: 20px;
+            margin-top: 30px;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+        }
+
+        .copy-btn {
+            margin-top: 10px;
+            background-color: #28a745;
+        }
+
+        .copy-btn:hover {
+            background-color: #1e7e34;
+        }
+
+        .creditos {
+            margin-top: 40px;
+            font-style: italic;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gerador de Ordem de Serviço</h1>
+
+    <form id="osForm">
+        <label>PRIORIDADE:</label>
+        <input type="text" id="prioridade" value="PADRÃO">
+
+        <label>TIPO DE O.S.:</label>
+        <select id="tipoOs" onchange="preencherRelatoOrientacao()">
+            <option value="">-- Selecione --</option>
+            <option value="drop-rompido">Manutenção - Drop rompido</option>
+            <option value="potencia-atenuada">Manutenção - Potência atenuada</option>
+            <option value="sem-conexao">Suporte - Sem conexão</option>
+        </select>
+
+        <label>TITULAR:</label>
+        <input type="text" id="titular">
+
+        <label>ENDEREÇO, Localização e CTO:</label>
+        <textarea id="endereco"></textarea>
+
+        <label>RESPONSÁVEL QUE RECEBERÁ A EQUIPE:</label>
+        <input type="text" id="responsavel">
+
+        <label>MELHOR HORÁRIO PARA ATENDIMENTO:</label>
+        <input type="text" id="horario">
+
+        <label>RELATO:</label>
+        <textarea id="relato"></textarea>
+
+        <label>ORIENTAÇÃO PARA OS TÉCNICOS:</label>
+        <textarea id="orientacao"></textarea>
+
+        <button type="button" onclick="gerarOS()">Gerar Ordem de Serviço</button>
+    </form>
+
+    <div class="output" id="osOutput" style="display:none;"></div>
+    <button class="copy-btn" onclick="copiarOS()" style="display:none;" id="copyBtn">Copiar OS para área de transferência</button>
+
+    <div class="creditos">
+        Criador: Marcley Lima
+    </div>
+
+    <script>
+        let osTexto = "";
+
+        function preencherRelatoOrientacao() {
+            const tipo = document.getElementById("tipoOs").value;
+            const relato = document.getElementById("relato");
+            const orientacao = document.getElementById("orientacao");
+
+            if (tipo === "drop-rompido") {
+                relato.value = "Cliente entrou em contato para relatar a falta de conexão à internet. Foi verificado que os cabos da fibra foram rompidos por um caminhão resultando na interrupção do serviço.";
+                orientacao.value = "Fazer o lançamento do cabo drop verificando a melhor rota para restabelecer a conexão do cliente. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
+            } else if (tipo === "potencia-atenuada") {
+                relato.value = "O Cliente comunicou constante instabilidade em sua rede. Foi verificado que a potência que chega até o equipamento está atenuada resultando na interrupção do serviço.";
+                orientacao.value = "Verificar a integridade do equipamento, dos cabos e dos conectores com o intuito de normalizar a potência que chega até o equipamento. Realizar todos os testes possíveis com o cliente para esclarecer qualquer dúvida que ele possa ter.";
+            } else if (tipo === "sem-conexao") {
+                relato.value = "Cliente informa lentidão em sua conexão. Foram realizadas diversas configurações remotas em seu equipamento, no entanto, sua conexão não normalizou.";
+                orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
+            } else {
+                relato.value = "";
+                orientacao.value = "";
+            }
+        }
+
+        function gerarOS() {
+            const prioridade = document.getElementById("prioridade").value;
+            const tipoOs = document.getElementById("tipoOs").options[document.getElementById("tipoOs").selectedIndex].text;
+            const titular = document.getElementById("titular").value;
+            const endereco = document.getElementById("endereco").value;
+            const responsavel = document.getElementById("responsavel").value;
+            const horario = document.getElementById("horario").value;
+            const relato = document.getElementById("relato").value;
+            const orientacao = document.getElementById("orientacao").value;
+
+            osTexto = `
+ORDEM DE SERVIÇO
+
+PRIORIDADE: ${prioridade}
+TIPO DE O.S.: ${tipoOs}
+
+TITULAR:
+${titular}
+
+ENDEREÇO, Localização e CTO:
+${endereco}
+
+RESPONSÁVEL QUE RECEBERÁ A EQUIPE:
+${responsavel}
+
+MELHOR HORÁRIO PARA ATENDIMENTO:
+${horario}
+
+RELATO:
+${relato}
+
+ORIENTAÇÃO PARA OS TÉCNICOS:
+${orientacao}
+
+Criador: Marcley Lima
+`;
+
+            const outputDiv = document.getElementById("osOutput");
+            outputDiv.innerText = osTexto;
+            outputDiv.style.display = "block";
+
+            document.getElementById("copyBtn").style.display = "inline-block";
+        }
+
+        function copiarOS() {
+            navigator.clipboard.writeText(osTexto).then(() => {
+                alert("Ordem de Serviço copiada para a área de transferência!");
+            }).catch(err => {
+                alert("Erro ao copiar: " + err);
+            });
+        }
+    </script>
+
+</body>
+</html>
