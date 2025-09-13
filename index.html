@@ -111,7 +111,12 @@
 
 <form id="osForm">
     <label>PRIORIDADE:</label>
-    <input type="text" id="prioridade" value="PADRÃO">
+<select id="prioridade">
+    <option value="PADRÃO">Padrão</option>
+    <option value="REINCIDENTE">Reincidente</option>
+    <option value="REVERSÃO DE CANCELAMENTO">Reversão de Cancelamento</option>
+</select>
+
 
     <label>TIPO DE O.S.:</label>
     <select id="tipoOs" onchange="preencherRelatoOrientacao()">
@@ -260,6 +265,7 @@ Criador: Marcley Lima
 
 </body>
 </html>
+
 
 
 
