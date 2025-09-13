@@ -132,6 +132,17 @@
             <option value="comercial">Comercial</option>
         </select>
 
+        <label>VALIDADOR:</label>
+        <select id="validador">
+            <option value="">-- Selecione --</option>
+            <option value="thais-coutinho">THAIS COUTINHO</option>
+            <option value="matheus-pereira">MATHEUS PEREIRA</option>
+            <option value="andrei-sousa">ANDREI SOUSA</option>
+            <option value="daniel-brasil">DANIEL BRASIL</option>
+            <option value="helen-tocantins">HELEN TOCANTINS</option>
+            <option value="paulo-henrique">PAULO HENRIQUE</option>
+        </select>
+
         <label>RELATO:</label>
         <textarea id="relato"></textarea>
 
@@ -178,6 +189,7 @@
             const endereco = document.getElementById("endereco").value;
             const responsavel = document.getElementById("responsavel").value;
             const horario = document.getElementById("horario").options[document.getElementById("horario").selectedIndex].text;
+            const validador = document.getElementById("validador").options[document.getElementById("validador").selectedIndex].text;
             const relato = document.getElementById("relato").value;
             const orientacao = document.getElementById("orientacao").value;
 
@@ -198,6 +210,9 @@ ${responsavel}
 
 MELHOR HORÁRIO PARA ATENDIMENTO:
 ${horario}
+
+VALIDADOR:
+${validador}
 
 RELATO:
 ${relato}
