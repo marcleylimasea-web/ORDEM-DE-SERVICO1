@@ -7,15 +7,22 @@
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
-            background-color: #f3f3f3;
+            background-color: #1a0000; /* fundo escuro avermelhado */
+            color: #fff; /* texto branco geral */
         }
 
         h1 {
-            color: #333;
+            color: #ff1a1a; /* vermelho vivo */
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px #ff0000;
         }
 
         label {
             font-weight: bold;
+            color: #fff; /* branco para os nomes */
+            display: block;
+            margin-top: 12px;
         }
 
         input, textarea, select {
@@ -23,31 +30,60 @@
             padding: 8px;
             margin: 6px 0 16px 0;
             box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid #ff4d4d;
+            background-color: #fff; /* fundo branco para edição */
+            color: #000; /* texto preto dentro dos campos */
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #ff0000;
+            box-shadow: 0 0 8px #ff0000;
+            background-color: #fff; /* manter fundo branco no foco */
+            color: #000; /* manter texto preto no foco */
         }
 
         button {
             padding: 10px 20px;
-            background-color: #2b7cff;
+            background-color: #ff0000;
             color: white;
             border: none;
             cursor: pointer;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin-top: 20px;
         }
 
         button:hover {
-            background-color: #0056c1;
+            background-color: #cc0000;
         }
 
         .output {
-            background-color: white;
+            background-color: #330000;
             padding: 20px;
             margin-top: 30px;
-            border: 1px solid #ccc;
+            border: 1px solid #ff0000;
             white-space: pre-wrap;
+            border-radius: 6px;
+            color: #ffcccc;
         }
 
         .copy-btn {
             margin-top: 10px;
             background-color: #28a745;
+            border-radius: 6px;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            display: none;
+            transition: background-color 0.3s ease;
         }
 
         .copy-btn:hover {
@@ -58,7 +94,8 @@
             margin-top: 40px;
             font-style: italic;
             text-align: center;
-            color: #666;
+            color: #ff4d4d;
+            user-select: none;
         }
     </style>
 </head>
@@ -88,7 +125,12 @@
         <input type="text" id="responsavel">
 
         <label>MELHOR HORÁRIO PARA ATENDIMENTO:</label>
-        <input type="text" id="horario">
+        <select id="horario">
+            <option value="">-- Selecione --</option>
+            <option value="manha">Manhã</option>
+            <option value="tarde">Tarde</option>
+            <option value="comercial">Comercial</option>
+        </select>
 
         <label>RELATO:</label>
         <textarea id="relato"></textarea>
@@ -100,7 +142,7 @@
     </form>
 
     <div class="output" id="osOutput" style="display:none;"></div>
-    <button class="copy-btn" onclick="copiarOS()" style="display:none;" id="copyBtn">Copiar OS para área de transferência</button>
+    <button class="copy-btn" onclick="copiarOS()" id="copyBtn">Copiar OS para área de transferência</button>
 
     <div class="creditos">
         Criador: Marcley Lima
@@ -135,7 +177,7 @@
             const titular = document.getElementById("titular").value;
             const endereco = document.getElementById("endereco").value;
             const responsavel = document.getElementById("responsavel").value;
-            const horario = document.getElementById("horario").value;
+            const horario = document.getElementById("horario").options[document.getElementById("horario").selectedIndex].text;
             const relato = document.getElementById("relato").value;
             const orientacao = document.getElementById("orientacao").value;
 
@@ -170,7 +212,8 @@ Criador: Marcley Lima
             outputDiv.innerText = osTexto;
             outputDiv.style.display = "block";
 
-            document.getElementById("copyBtn").style.display = "inline-block";
+            const copyBtn = document.getElementById("copyBtn");
+            copyBtn.style.display = "inline-block";
         }
 
         function copiarOS() {
@@ -184,4 +227,3 @@ Criador: Marcley Lima
 
 </body>
 </html>
-
