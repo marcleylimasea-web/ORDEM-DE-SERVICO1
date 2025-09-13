@@ -184,6 +184,9 @@
     }
 
     function gerarOS() {
+        // Atualiza relato e orientação antes de pegar os valores
+        preencherRelatoOrientacao();
+
         const prioridade = document.getElementById("prioridade").value;
         const tipoOs = document.getElementById("tipoOs").options[document.getElementById("tipoOs").selectedIndex].text;
         const titular = document.getElementById("titular").value;
@@ -229,12 +232,4 @@ Criador: Marcley Lima
     }
 
     function copiarOS() {
-        navigator.clipboard.writeText(osTexto).then(() => {
-            alert("Ordem de Serviço copiada para a área de transferência!");
-        }).catch(err => {
-            alert("Erro ao copiar: " + err);
-        });
-    }
-
-    function fecharModal() {
-        document.getElementById
+        navigator.clipboard.writeText(osTexto).then
