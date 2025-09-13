@@ -171,6 +171,7 @@
         <option value="potencia-atenuada">Manutenção - Potência atenuada</option>
         <option value="sem-conexao">Suporte - Sem conexão</option>
         <option value="link loss">Manutenção - link loss</option>
+      <option value="Motivo Nao identificado">Manutenção - Motivo não identificado</option>
     </select>
 
     <label>TITULAR:</label>
@@ -232,11 +233,15 @@
             relato.value = "O Cliente comunicou constante instabilidade em sua rede. Foi verificado que a potência que chega até o equipamento está atenuada resultando na interrupção do serviço.";
             orientacao.value = "Verificar a integridade do equipamento, dos cabos e dos conectores com o intuito de normalizar a potência que chega até o equipamento. Realizar todos os testes possíveis com o cliente para esclarecer qualquer dúvida que ele possa ter.";
         } else if (tipo === "sem-conexao") {
-            relato.value = "Cliente informa lentidão em sua conexão. Foram realizadas diversas configurações remotas em seu equipamento, no entanto, sua conexão não normalizou.";
+            relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido..";
             orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
         } else if (tipo === "link loss") {
             relato.value = "Cliente relata estar sem conexão, foi verificado que o status do equipamento está em link-loss o que indica um possível rompimento da fibra ou defeito no equipamento.Cliente relata estar sem conexão, foi verificado que o status do equipamento está em link-loss o que indica um possível rompimento da fibra ou defeito no equipamento.";
             orientacao.value = "Verificar a integridade do equipamento ,dos cabos e dos conectores. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
+        
+        } else if (tipo === "Motivo nao identificado") {
+            relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido.";
+            orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação
         } else {
             relato.value = "";
             orientacao.value = "";
@@ -312,3 +317,4 @@ Criador: Marcley Lima
 
 </body>
 </html>
+
