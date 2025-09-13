@@ -232,4 +232,17 @@ Criador: Marcley Lima
     }
 
     function copiarOS() {
-        navigator.clipboard.writeText(osTexto).then
+        navigator.clipboard.writeText(osTexto).then(() => {
+            alert("Ordem de Serviço copiada para a área de transferência!");
+        }).catch(err => {
+            alert("Erro ao copiar: " + err);
+        });
+    }
+
+    function fecharModal() {
+        document.getElementById("osModal").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
