@@ -18,13 +18,35 @@
             padding: 20px;
             background-color: #121212;
             color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
 
         h1 {
             color: #ff4c4c;
-            text-align: center;
             font-size: 32px;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .creditos {
+            font-style: italic;
+            color: #aaaaaa;
             margin-bottom: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        form#osForm {
+            width: 450px;
+            max-width: 90%;
+            margin: 0 auto 40px auto;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
         }
 
         label {
@@ -34,13 +56,13 @@
 
         input, textarea, select {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             margin: 6px 0 16px 0;
             box-sizing: border-box;
             background-color: #ffffff;
             color: #000000;
-            border: none;
-            border-radius: 4px;
+            border: 1px solid #333;
+            border-radius: 8px; /* Cantos arredondados */
         }
 
         button {
@@ -49,23 +71,18 @@
             color: white;
             border: none;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
         }
 
         button:hover {
             background-color: #e53935;
         }
 
-        .creditos {
-            margin-top: 40px;
-            font-style: italic;
-            text-align: center;
-            color: #aaaaaa;
-        }
-
         /* Estilo para o modal */
         #osModal {
-            display: none;
+            display: none; /* Modal invisível ao carregar a página */
             position: fixed;
             top: 10%;
             left: 50%;
@@ -77,13 +94,39 @@
             z-index: 9999;
             width: 90%;
             max-width: 600px;
+            max-height: 60vh; /* Limita a altura do modal */
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
             border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #osOutput {
+            flex-grow: 1;
+            overflow-y: auto;
+            background-color: #222;
+            padding: 15px;
+            border-radius: 8px;
+            max-height: 400px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .copy-btn, .fechar {
+            display: none;
         }
 
         .copy-btn {
-            margin-top: 10px;
             background-color: #4caf50;
+            align-self: flex-start;
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
         }
 
         .copy-btn:hover {
@@ -91,13 +134,16 @@
         }
 
         .fechar {
-            float: right;
+            align-self: flex-end;
             background-color: #ff4c4c;
             border: none;
             color: white;
-            padding: 4px 10px;
+            padding: 6px 12px;
             cursor: pointer;
             border-radius: 5px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 16px;
         }
 
         .fechar:hover {
@@ -108,15 +154,15 @@
 <body>
 
 <h1>GERADOR DE O.S</h1>
+<div class="creditos">Criador: Marcley Lima</div>
 
 <form id="osForm">
     <label>PRIORIDADE:</label>
-<select id="prioridade">
-    <option value="PADRÃO">Padrão</option>
-    <option value="REINCIDENTE">Reincidente</option>
-    <option value="REVERSÃO DE CANCELAMENTO">Reversão de Cancelamento</option>
-</select>
-
+    <select id="prioridade">
+        <option value="PADRÃO">Padrão</option>
+        <option value="REINCIDENTE">Reincidente</option>
+        <option value="REVERSÃO DE CANCELAMENTO">Reversão de Cancelamento</option>
+    </select>
 
     <label>TIPO DE O.S.:</label>
     <select id="tipoOs" onchange="preencherRelatoOrientacao()">
@@ -125,7 +171,6 @@
         <option value="potencia-atenuada">Manutenção - Potência atenuada</option>
         <option value="sem-conexao">Suporte - Sem conexão</option>
         <option value="link loss">Manutenção - link loss</option>
-
     </select>
 
     <label>TITULAR:</label>
@@ -170,10 +215,6 @@
     <button class="fechar" onclick="fecharModal()">X</button>
     <pre id="osOutput"></pre>
     <button class="copy-btn" onclick="copiarOS()">Copiar OS para área de transferência</button>
-</div>
-
-<div class="creditos">
-    Criador: Marcley Lima
 </div>
 
 <script>
@@ -245,9 +286,10 @@ ${validador}
 
 Criador: Marcley Lima
 `;
-
         document.getElementById("osOutput").innerText = osTexto;
-        document.getElementById("osModal").style.display = "block";
+        document.getElementById("osModal").style.display = "flex"; // Exibe o modal
+        document.querySelector(".copy-btn").style.display = "inline-block"; // Exibe o botão copiar
+        document.querySelector(".fechar").style.display = "inline-block"; // Exibe o botão fechar
     }
 
     function copiarOS() {
@@ -261,12 +303,12 @@ Criador: Marcley Lima
     function fecharModal() {
         document.getElementById("osModal").style.display = "none";
     }
+
+    // Inicialmente escondendo o modal
+    window.onload = function() {
+        document.getElementById("osModal").style.display = "none";
+    }
 </script>
 
 </body>
 </html>
-
-
-
-
-
