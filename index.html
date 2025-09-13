@@ -7,22 +7,20 @@
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
-            background-color: #1a0000;
-            color: #fff;
+            background-color: #121212;
+            color: #ffffff;
         }
 
         h1 {
-            color: #ff1a1a;
+            color: #ff4c4c;
             text-align: center;
+            font-size: 32px;
             margin-bottom: 30px;
-            text-shadow: 0 0 5px #ff0000;
         }
 
         label {
             font-weight: bold;
-            color: #fff;
-            display: block;
-            margin-top: 12px;
+            color: #ffffff;
         }
 
         input, textarea, select {
@@ -30,199 +28,173 @@
             padding: 8px;
             margin: 6px 0 16px 0;
             box-sizing: border-box;
-            border-radius: 6px;
-            border: 1px solid #ff4d4d;
-            background-color: #fff;
-            color: #000;
-            font-size: 1rem;
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 4px;
         }
 
         button {
             padding: 10px 20px;
-            background-color: #ff0000;
+            background-color: #ff4c4c;
             color: white;
             border: none;
             cursor: pointer;
-            font-weight: bold;
-            border-radius: 6px;
-            transition: background-color 0.3s ease;
-            display: block;
-            margin-top: 20px;
+            border-radius: 4px;
         }
 
         button:hover {
-            background-color: #cc0000;
+            background-color: #e53935;
         }
 
         .creditos {
             margin-top: 40px;
             font-style: italic;
             text-align: center;
-            color: #ff4d4d;
+            color: #aaaaaa;
         }
 
-        /* Modal */
-        .modal {
+        /* Estilo para o modal */
+        #osModal {
             display: none;
             position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.7);
-        }
-
-        .modal-content {
-            background-color: #330000;
-            margin: 10% auto;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e1e1e;
+            color: white;
             padding: 20px;
-            border: 2px solid #ff0000;
-            width: 80%;
+            border: 1px solid #555;
+            z-index: 9999;
+            width: 90%;
             max-width: 600px;
-            color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 20px #ff0000;
-            position: relative;
-        }
-
-        .close {
-            color: #fff;
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover {
-            color: #ff4d4d;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
         }
 
         .copy-btn {
-            margin-top: 15px;
-            background-color: #28a745;
-            border-radius: 6px;
-            padding: 10px 20px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
+            margin-top: 10px;
+            background-color: #4caf50;
         }
 
         .copy-btn:hover {
-            background-color: #1e7e34;
+            background-color: #388e3c;
         }
 
-        pre.output {
-            white-space: pre-wrap;
-            word-wrap: break-word;
+        .fechar {
+            float: right;
+            background-color: #ff4c4c;
+            border: none;
+            color: white;
+            padding: 4px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .fechar:hover {
+            background-color: #c62828;
         }
     </style>
 </head>
 <body>
 
-    <h1>Gerador de Ordem de Serviço</h1>
+<h1>GERADOR DE O.S</h1>
 
-    <form id="osForm">
-        <label>PRIORIDADE:</label>
-        <input type="text" id="prioridade" value="PADRÃO">
+<form id="osForm">
+    <label>PRIORIDADE:</label>
+    <input type="text" id="prioridade" value="PADRÃO">
 
-        <label>TIPO DE O.S.:</label>
-        <select id="tipoOs" onchange="preencherRelatoOrientacao()">
-            <option value="">-- Selecione --</option>
-            <option value="drop-rompido">Manutenção - Drop rompido</option>
-            <option value="potencia-atenuada">Manutenção - Potência atenuada</option>
-            <option value="sem-conexao">Suporte - Sem conexão</option>
-        </select>
+    <label>TIPO DE O.S.:</label>
+    <select id="tipoOs" onchange="preencherRelatoOrientacao()">
+        <option value="">-- Selecione --</option>
+        <option value="drop-rompido">Manutenção - Drop rompido</option>
+        <option value="potencia-atenuada">Manutenção - Potência atenuada</option>
+        <option value="sem-conexao">Suporte - Sem conexão</option>
+    </select>
 
-        <label>TITULAR:</label>
-        <input type="text" id="titular">
+    <label>TITULAR:</label>
+    <input type="text" id="titular">
 
-        <label>ENDEREÇO, Localização e CTO:</label>
-        <textarea id="endereco"></textarea>
+    <label>ENDEREÇO, Localização e CTO:</label>
+    <textarea id="endereco"></textarea>
 
-        <label>RESPONSÁVEL QUE RECEBERÁ A EQUIPE:</label>
-        <input type="text" id="responsavel">
+    <label>RESPONSÁVEL QUE RECEBERÁ A EQUIPE:</label>
+    <input type="text" id="responsavel">
 
-        <label>MELHOR HORÁRIO PARA ATENDIMENTO:</label>
-        <select id="horario">
-            <option value="">-- Selecione --</option>
-            <option value="Manhã">Manhã</option>
-            <option value="Tarde">Tarde</option>
-            <option value="Comercial">Comercial</option>
-        </select>
+    <label>MELHOR HORÁRIO PARA ATENDIMENTO:</label>
+    <select id="horario">
+        <option value="">-- Selecione --</option>
+        <option value="Manhã">Manhã</option>
+        <option value="Tarde">Tarde</option>
+        <option value="Comercial">Comercial</option>
+    </select>
 
-        <label>RELATO:</label>
-        <textarea id="relato"></textarea>
+    <label>RELATO:</label>
+    <textarea id="relato"></textarea>
 
-        <label>ORIENTAÇÃO PARA OS TÉCNICOS:</label>
-        <textarea id="orientacao"></textarea>
+    <label>ORIENTAÇÃO PARA OS TÉCNICOS:</label>
+    <textarea id="orientacao"></textarea>
 
-        <label>VALIDADOR:</label>
-        <select id="validador">
-            <option value="">-- Selecione --</option>
-            <option value="THAIS COUTINHO">THAIS COUTINHO</option>
-            <option value="MATHEUS PEREIRA">MATHEUS PEREIRA</option>
-            <option value="ANDREI SOUSA">ANDREI SOUSA</option>
-            <option value="DANIEL BRASIL">DANIEL BRASIL</option>
-            <option value="HELEN TOCANTINS">HELEN TOCANTINS</option>
-            <option value="PAULO HENRIQUE">PAULO HENRIQUE</option>
-        </select>
+    <label>VALIDADOR:</label>
+    <select id="validador">
+        <option value="">-- Selecione --</option>
+        <option value="THAIS COUTINHO">THAIS COUTINHO</option>
+        <option value="MATHEUS PEREIRA">MATHEUS PEREIRA</option>
+        <option value="ANDREI SOUSA">ANDREI SOUSA</option>
+        <option value="DANIEL BRASIL">DANIEL BRASIL</option>
+        <option value="HELEN TOCANTINS">HELEN TOCANTINS</option>
+        <option value="PAULO HENRIQUE">PAULO HENRIQUE</option>
+    </select>
 
-        <button type="button" onclick="gerarOS()">Gerar Ordem de Serviço</button>
-    </form>
+    <button type="button" onclick="gerarOS()">Gerar Ordem de Serviço</button>
+</form>
 
-    <!-- Modal -->
-    <div id="osModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharModal()">&times;</span>
-            <pre id="osOutput" class="output"></pre>
-            <button class="copy-btn" onclick="copiarOS()">Copiar OS para área de transferência</button>
-        </div>
-    </div>
+<!-- Modal de saída -->
+<div id="osModal">
+    <button class="fechar" onclick="fecharModal()">X</button>
+    <pre id="osOutput"></pre>
+    <button class="copy-btn" onclick="copiarOS()">Copiar OS para área de transferência</button>
+</div>
 
-    <div class="creditos">
-        Criador: Marcley Lima
-    </div>
+<div class="creditos">
+    Criador: Marcley Lima
+</div>
 
-    <script>
-        let osTexto = "";
+<script>
+    let osTexto = "";
 
-        function preencherRelatoOrientacao() {
-            const tipo = document.getElementById("tipoOs").value;
-            const relato = document.getElementById("relato");
-            const orientacao = document.getElementById("orientacao");
+    function preencherRelatoOrientacao() {
+        const tipo = document.getElementById("tipoOs").value;
+        const relato = document.getElementById("relato");
+        const orientacao = document.getElementById("orientacao");
 
-            if (tipo === "drop-rompido") {
-                relato.value = "Cliente entrou em contato para relatar a falta de conexão à internet. Foi verificado que os cabos da fibra foram rompidos por um caminhão resultando na interrupção do serviço.";
-                orientacao.value = "Fazer o lançamento do cabo drop verificando a melhor rota para restabelecer a conexão do cliente. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
-            } else if (tipo === "potencia-atenuada") {
-                relato.value = "O Cliente comunicou constante instabilidade em sua rede. Foi verificado que a potência que chega até o equipamento está atenuada resultando na interrupção do serviço.";
-                orientacao.value = "Verificar a integridade do equipamento, dos cabos e dos conectores com o intuito de normalizar a potência que chega até o equipamento. Realizar todos os testes possíveis com o cliente para esclarecer qualquer dúvida que ele possa ter.";
-            } else if (tipo === "sem-conexao") {
-                relato.value = "Cliente informa lentidão em sua conexão. Foram realizadas diversas configurações remotas em seu equipamento, no entanto, sua conexão não normalizou.";
-                orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
-            } else {
-                relato.value = "";
-                orientacao.value = "";
-            }
+        if (tipo === "drop-rompido") {
+            relato.value = "Cliente entrou em contato para relatar a falta de conexão à internet. Foi verificado que os cabos da fibra foram rompidos por um caminhão resultando na interrupção do serviço.";
+            orientacao.value = "Fazer o lançamento do cabo drop verificando a melhor rota para restabelecer a conexão do cliente. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
+        } else if (tipo === "potencia-atenuada") {
+            relato.value = "O Cliente comunicou constante instabilidade em sua rede. Foi verificado que a potência que chega até o equipamento está atenuada resultando na interrupção do serviço.";
+            orientacao.value = "Verificar a integridade do equipamento, dos cabos e dos conectores com o intuito de normalizar a potência que chega até o equipamento. Realizar todos os testes possíveis com o cliente para esclarecer qualquer dúvida que ele possa ter.";
+        } else if (tipo === "sem-conexao") {
+            relato.value = "Cliente informa lentidão em sua conexão. Foram realizadas diversas configurações remotas em seu equipamento, no entanto, sua conexão não normalizou.";
+            orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
+        } else {
+            relato.value = "";
+            orientacao.value = "";
         }
+    }
 
-        function gerarOS() {
-            const prioridade = document.getElementById("prioridade").value;
-            const tipoOs = document.getElementById("tipoOs").options[document.getElementById("tipoOs").selectedIndex].text;
-            const titular = document.getElementById("titular").value;
-            const endereco = document.getElementById("endereco").value;
-            const responsavel = document.getElementById("responsavel").value;
-            const horario = document.getElementById("horario").value;
-            const relato = document.getElementById("relato").value;
-            const orientacao = document.getElementById("orientacao").value;
-            const validador = document.getElementById("validador").value;
+    function gerarOS() {
+        const prioridade = document.getElementById("prioridade").value;
+        const tipoOs = document.getElementById("tipoOs").options[document.getElementById("tipoOs").selectedIndex].text;
+        const titular = document.getElementById("titular").value;
+        const endereco = document.getElementById("endereco").value;
+        const responsavel = document.getElementById("responsavel").value;
+        const horario = document.getElementById("horario").value;
+        const relato = document.getElementById("relato").value;
+        const orientacao = document.getElementById("orientacao").value;
+        const validador = document.getElementById("validador").value;
 
-            osTexto = `
+        osTexto = `
 ORDEM DE SERVIÇO
 
 PRIORIDADE: ${prioridade}
@@ -252,23 +224,17 @@ ${validador}
 Criador: Marcley Lima
 `;
 
-            const outputDiv = document.getElementById("osOutput");
-            outputDiv.innerText = osTexto;
-            document.getElementById("osModal").style.display = "block";
-        }
+        document.getElementById("osOutput").innerText = osTexto;
+        document.getElementById("osModal").style.display = "block";
+    }
 
-        function copiarOS() {
-            navigator.clipboard.writeText(osTexto).then(() => {
-                alert("Ordem de Serviço copiada para a área de transferência!");
-            }).catch(err => {
-                alert("Erro ao copiar: " + err);
-            });
-        }
+    function copiarOS() {
+        navigator.clipboard.writeText(osTexto).then(() => {
+            alert("Ordem de Serviço copiada para a área de transferência!");
+        }).catch(err => {
+            alert("Erro ao copiar: " + err);
+        });
+    }
 
-        function fecharModal() {
-            document.getElementById("osModal").style.display = "none";
-        }
-    </script>
-
-</body>
-</html>
+    function fecharModal() {
+        document.getElementById
