@@ -2,14 +2,13 @@
 <html lang="pt-BR">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RMNDR3HB80"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-RMNDR3HB80');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RMNDR3HB80"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RMNDR3HB80');
+    </script>
     <meta charset="UTF-8">
     <title>Gerador de Ordem de Serviço</title>
     <style>
@@ -62,7 +61,7 @@
             background-color: #ffffff;
             color: #000000;
             border: 1px solid #333;
-            border-radius: 8px; /* Cantos arredondados */
+            border-radius: 8px;
         }
 
         button {
@@ -80,9 +79,8 @@
             background-color: #e53935;
         }
 
-        /* Estilo para o modal */
         #osModal {
-            display: none; /* Modal invisível ao carregar a página */
+            display: none;
             position: fixed;
             top: 10%;
             left: 50%;
@@ -94,7 +92,7 @@
             z-index: 9999;
             width: 90%;
             max-width: 600px;
-            max-height: 60vh; /* Limita a altura do modal */
+            max-height: 60vh;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             overflow: hidden;
@@ -171,7 +169,7 @@
         <option value="potencia-atenuada">Manutenção - Potência atenuada</option>
         <option value="sem-conexao">Suporte - Sem conexão</option>
         <option value="link loss">Manutenção - link loss</option>
-      <option value="Motivo Nao identificado">Manutenção - Motivo não identificado</option>
+        <option value="Motivo Nao identificado">Manutenção - Motivo não identificado</option>
     </select>
 
     <label>TITULAR:</label>
@@ -233,15 +231,14 @@
             relato.value = "O Cliente comunicou constante instabilidade em sua rede. Foi verificado que a potência que chega até o equipamento está atenuada resultando na interrupção do serviço.";
             orientacao.value = "Verificar a integridade do equipamento, dos cabos e dos conectores com o intuito de normalizar a potência que chega até o equipamento. Realizar todos os testes possíveis com o cliente para esclarecer qualquer dúvida que ele possa ter.";
         } else if (tipo === "sem-conexao") {
-            relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido..";
+            relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido.";
             orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
         } else if (tipo === "link loss") {
-            relato.value = "Cliente relata estar sem conexão, foi verificado que o status do equipamento está em link-loss o que indica um possível rompimento da fibra ou defeito no equipamento.Cliente relata estar sem conexão, foi verificado que o status do equipamento está em link-loss o que indica um possível rompimento da fibra ou defeito no equipamento.";
-            orientacao.value = "Verificar a integridade do equipamento ,dos cabos e dos conectores. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
-        
-        } else if (tipo === "Motivo nao identificado") {
+            relato.value = "Cliente relata estar sem conexão, foi verificado que o status do equipamento está em link-loss o que indica um possível rompimento da fibra ou defeito no equipamento.";
+            orientacao.value = "Verificar a integridade do equipamento, dos cabos e dos conectores. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
+        } else if (tipo === "Motivo Nao identificado") {
             relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido.";
-            orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação
+            orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
         } else {
             relato.value = "";
             orientacao.value = "";
@@ -249,7 +246,6 @@
     }
 
     function gerarOS() {
-        // Atualiza relato e orientação antes de pegar os valores
         preencherRelatoOrientacao();
 
         const prioridade = document.getElementById("prioridade").value;
@@ -268,38 +264,45 @@ ORDEM DE SERVIÇO
 PRIORIDADE: ${prioridade}
 TIPO DE O.S.: ${tipoOs}
 
-TITULAR:
-${titular}
+TITULAR:${titular}
 
-ENDEREÇO, Localização e CTO:
-${endereco}
+ENDEREÇO, Localização e CTO:${endereco}
 
-RESPONSÁVEL QUE RECEBERÁ A EQUIPE:
-${responsavel}
+RESPONSÁVEL QUE RECEBERÁ A EQUIPE:${responsavel}
 
-MELHOR HORÁRIO PARA ATENDIMENTO:
-${horario}
+MELHOR HORÁRIO PARA ATENDIMENTO:${horario}
 
-RELATO:
-${relato}
+RELATO:${relato}
 
-ORIENTAÇÃO PARA OS TÉCNICOS:
-${orientacao}
+ORIENTAÇÃO PARA OS TÉCNICOS:${orientacao}
 
-VALIDADOR:
-${validador}
+VALIDADOR:${validador}
 
-Criador: Marcley Lima
 `;
         document.getElementById("osOutput").innerText = osTexto;
-        document.getElementById("osModal").style.display = "flex"; // Exibe o modal
-        document.querySelector(".copy-btn").style.display = "inline-block"; // Exibe o botão copiar
-        document.querySelector(".fechar").style.display = "inline-block"; // Exibe o botão fechar
+        document.getElementById("osModal").style.display = "flex";
+        document.querySelector(".copy-btn").style.display = "inline-block";
+        document.querySelector(".fechar").style.display = "inline-block";
     }
 
     function copiarOS() {
+        const botaoCopiar = document.querySelector(".copy-btn");
+
         navigator.clipboard.writeText(osTexto).then(() => {
-            alert("Ordem de Serviço copiada para a área de transferência!");
+            const textoOriginal = botaoCopiar.innerText;
+            botaoCopiar.innerText = "✅ Copiado!";
+            botaoCopiar.disabled = true;
+
+            // Resetar o formulário
+            document.getElementById("osForm").reset();
+            document.getElementById("relato").value = "";
+            document.getElementById("orientacao").value = "";
+
+            setTimeout(() => {
+                botaoCopiar.innerText = textoOriginal;
+                botaoCopiar.disabled = false;
+                fecharModal();
+            }, 3000);
         }).catch(err => {
             alert("Erro ao copiar: " + err);
         });
@@ -309,7 +312,6 @@ Criador: Marcley Lima
         document.getElementById("osModal").style.display = "none";
     }
 
-    // Inicialmente escondendo o modal
     window.onload = function() {
         document.getElementById("osModal").style.display = "none";
     }
@@ -317,4 +319,3 @@ Criador: Marcley Lima
 
 </body>
 </html>
-
