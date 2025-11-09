@@ -172,6 +172,7 @@
     <select id="tipoOs" onchange="preencherRelatoOrientacao()">
         <option value="">-- Selecione --</option>
         <option value="sem-conexao">Suporte - Sem conexão</option>
+        <option value="velocidade contratada">Suporte - Velocidade contratada</option>
         <option value="equipamento resetado">Suporte - Equipamento resetado</option>
         <option value="Motivo Nao identificado">Suporte - Motivo não identificado</option>
         <option value="drop-rompido">Manutenção - Drop rompido</option>
@@ -227,7 +228,10 @@
     if (tipo === "sem-conexao") {
         relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido.";
         orientacao.value = "Verificar a integridade do equipamento, verificar a integridade dos conectores. Caso necessário, EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
-    } else if (tipo === "equipamento resetado") {
+    } else if (tipo === " Velocidade contratada") {
+        relato.value = "Cliente informa que sua velocidade não está de acordo com o seu plano contratado. Foram realizadas diversas configurações remotas em seu equipamento, no entanto, a velocidade do plano contratado não foi atingida."
+        orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação"
+    } else if (tipo === "equipamento resetado") { 
         relato.value = "Cliente informa falta de conexão, sua rede Wi-Fi não está mais aparecendo, porém o equipamento está online no UNM.";
         orientacao.value = "Verificar integridade dos conectores internos e externos, do drop, realizar limpeza com caneta dos conectores e do leitor óptico da ONU. Verificar integridade da ONU, da fonte de alimentação e da tomada. Se necessário, realizar a troca de equipamento e habilitar acesso remoto.";
     } else if (tipo === "link loss") {
@@ -313,6 +317,7 @@ VALIDADOR:${validador}
 
 </body>
 </html>
+
 
 
 
