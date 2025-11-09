@@ -261,34 +261,42 @@
 
 
     function gerarOS() {
+    const tipoSelecionado = document.getElementById("tipoOs").value.trim();
+    const relatoCampo = document.getElementById("relato");
+    const orientacaoCampo = document.getElementById("orientacao");
+
+    if (relatoCampo.value.trim() === "" && orientacaoCampo.value.trim() === "") {
         preencherRelatoOrientacao();
+    }
 
-        const prioridade = document.getElementById("prioridade").value;
-        const tipoOs = document.getElementById("tipoOs").options[document.getElementById("tipoOs").selectedIndex].text;
-        const titular = document.getElementById("titular").value;
-        const endereco = document.getElementById("endereco").value;
-        const responsavel = document.getElementById("responsavel").value;
-        const horario = document.getElementById("horario").value;
-        const relato = document.getElementById("relato").value;
-        const orientacao = document.getElementById("orientacao").value;
-        const validador = document.getElementById("validador").value;
+    const prioridade = document.getElementById("prioridade").value;
+    const tipoOs = document.getElementById("tipoOs").options[document.getElementById("tipoOs").selectedIndex].text;
+    const titular = document.getElementById("titular").value;
+    const endereco = document.getElementById("endereco").value;
+    const responsavel = document.getElementById("responsavel").value;
+    const horario = document.getElementById("horario").value;
+    const relato = relatoCampo.value; // ← usa o valor atual, editado
+    const orientacao = orientacaoCampo.value; // ← idem
+    const validador = document.getElementById("validador").value;
 
-        osTexto = `
-MELHOR HORÁRIO PARA ATENDIMENTO:${horario}
+    osTexto = `
+MELHOR HORÁRIO PARA ATENDIMENTO: ${horario}
 PRIORIDADE: ${prioridade}
 TIPO DE O.S.: ${tipoOs}
-TITULAR:${titular}
-ENDEREÇO, Localização e CTO:${endereco}
-RESPONSÁVEL QUE RECEBERÁ A EQUIPE:${responsavel}
-RELATO:${relato}
-ORIENTAÇÃO PARA OS TÉCNICOS:${orientacao}
-VALIDADOR:${validador}
-
+TITULAR: ${titular}
+ENDEREÇO, Localização e CTO: ${endereco}
+RESPONSÁVEL QUE RECEBERÁ A EQUIPE: ${responsavel}
+RELATO: ${relato}
+ORIENTAÇÃO PARA OS TÉCNICOS: ${orientacao}
+VALIDADOR: ${validador}
 `;
-        document.getElementById("osOutput").innerText = osTexto;
-        document.getElementById("osModal").style.display = "flex";
-        document.querySelector(".copy-btn").style.display = "inline-block";
-        document.querySelector(".fechar").style.display = "inline-block";
+
+    document.getElementById("osOutput").innerText = osTexto;
+    document.getElementById("osModal").style.display = "flex";
+    document.querySelector(".copy-btn").style.display = "inline-block";
+    document.querySelector(".fechar").style.display = "inline-block";
+}
+
     }
 
     function copiarOS() {
@@ -324,6 +332,7 @@ VALIDADOR:${validador}
 
 </body>
 </html>
+
 
 
 
