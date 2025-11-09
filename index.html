@@ -232,7 +232,7 @@
             relato.value = " Cliente informa falta de conexão, sua rede wifi não está mais aparecendo, porém, equipamento está online no UNM"
             orientaçao.value = " Verificar integridade dos conectores internos e externos, do drop, realizar limpeza com caneta dos conectores e do leitor óptico da onu, verificar a integridade da onu, da fonte de alimentação, da tomada e do equipamento, se necessário, realizar a troca de equipamento - realizar teste de rede nos equipamentos do cliente e habilitar acesso remoto caso não esteja habilitado."
         } else if (tipo === "link loss") {
-            (tipo === "drop-rompido") {
+        } else if (tipo === "drop-rompido") {
             relato.value = "Cliente entrou em contato para relatar a falta de conexão à internet. Foi verificado que os cabos da fibra foram rompidos por um caminhão resultando na interrupção do serviço.";
             orientacao.value = "Fazer o lançamento do cabo drop verificando a melhor rota para restabelecer a conexão do cliente. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
         } else if (tipo === "potencia-atenuada") {
@@ -314,6 +314,7 @@ VALIDADOR:${validador}
 
 </body>
 </html>
+
 
 
 
