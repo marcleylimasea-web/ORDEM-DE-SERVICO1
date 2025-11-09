@@ -79,25 +79,24 @@
         }
 
         #osModal {
-            display: none;
-            position: fixed;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #1e1e1e;
-            color: white;
-            padding: 20px;
-            border: 1px solid #555;
-            z-index: 9999;
-            width: 90%;
-            max-width: 600px;
-            max-height: 60vh;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
+    display: none; 
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1e1e1e;
+    color: white;
+    padding: 20px;
+    border: 1px solid #555;
+    z-index: 9999;
+    width: 90%;
+    max-width: 600px;
+    max-height: 60vh;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    flex-direction: column;
+}
 
         #osOutput {
             flex-grow: 1;
@@ -221,33 +220,34 @@
     let osTexto = "";
 
     function preencherRelatoOrientacao() {
-        const tipo = document.getElementById("tipoOs").value;
-        const relato = document.getElementById("relato");
-        const orientacao = document.getElementById("orientacao");
+    const tipo = document.getElementById("tipoOs").value;
+    const relato = document.getElementById("relato");
+    const orientacao = document.getElementById("orientacao");
 
-        if (tipo === "sem-conexao") {
-            relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido.";
-            orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
-        } else if (tipo === "equipamento resetado") {
-            relato.value = " Cliente informa falta de conexão, sua rede wifi não está mais aparecendo, porém, equipamento está online no UNM"
-            orientacao.value = " Verificar integridade dos conectores internos e externos, do drop, realizar limpeza com caneta dos conectores e do leitor óptico da onu, verificar a integridade da onu, da fonte de alimentação, da tomada e do equipamento, se necessário, realizar a troca de equipamento - realizar teste de rede nos equipamentos do cliente e habilitar acesso remoto caso não esteja habilitado."
-            } else if (tipo === "link loss") {
-            relato.value = "Cliente relata estar sem conexão, foi verificado que o status do equipamento está em link-loss, o que indica um possível rompimento da fibra ou defeito no equipamento.";
-            orientacao.value = "Verificar a integridade do equipamento, dos cabos e dos conectores. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
-        } else if (tipo === "drop-rompido") {
-            relato.value = "Cliente entrou em contato para relatar a falta de conexão à internet. Foi verificado que os cabos da fibra foram rompidos por um caminhão resultando na interrupção do serviço.";
-            orientacao.value = "Fazer o lançamento do cabo drop verificando a melhor rota para restabelecer a conexão do cliente. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
-        } else if (tipo === "potencia-atenuada") {
-            relato.value = "O Cliente comunicou constante instabilidade em sua rede. Foi verificado que a potência que chega até o equipamento está atenuada resultando na interrupção do serviço.";
-            orientacao.value = "Verificar a integridade do equipamento, dos cabos e dos conectores com o intuito de normalizar a potência que chega até o equipamento. Realizar todos os testes possíveis com o cliente para esclarecer qualquer dúvida que ele possa ter.";
-        } else if (tipo === "Motivo Nao identificado") {
-            relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido.";
-            orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
-        } else {
-            relato.value = "";
-            orientacao.value = "";
-        }
+    if (tipo === "sem-conexao") {
+        relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido.";
+        orientacao.value = "Verificar a integridade do equipamento, verificar a integridade dos conectores. Caso necessário, EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
+    } else if (tipo === "equipamento resetado") {
+        relato.value = "Cliente informa falta de conexão, sua rede Wi-Fi não está mais aparecendo, porém o equipamento está online no UNM.";
+        orientacao.value = "Verificar integridade dos conectores internos e externos, do drop, realizar limpeza com caneta dos conectores e do leitor óptico da ONU. Verificar integridade da ONU, da fonte de alimentação e da tomada. Se necessário, realizar a troca de equipamento e habilitar acesso remoto.";
+    } else if (tipo === "link loss") {
+        relato.value = "Cliente relata estar sem conexão. Foi verificado que o status do equipamento está em link-loss, o que indica um possível rompimento da fibra ou defeito no equipamento.";
+        orientacao.value = "Verificar a integridade do equipamento, dos cabos e dos conectores. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
+    } else if (tipo === "drop-rompido") {
+        relato.value = "Cliente entrou em contato para relatar a falta de conexão à internet. Foi verificado que os cabos da fibra foram rompidos por um caminhão, resultando na interrupção do serviço.";
+        orientacao.value = "Fazer o lançamento do cabo drop verificando a melhor rota para restabelecer a conexão. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
+    } else if (tipo === "potencia-atenuada") {
+        relato.value = "O cliente comunicou constante instabilidade em sua rede. Foi verificado que a potência que chega até o equipamento está atenuada, resultando na interrupção do serviço.";
+        orientacao.value = "Verificar a integridade do equipamento, dos cabos e dos conectores com o intuito de normalizar a potência. Realizar todos os testes possíveis com o cliente.";
+    } else if (tipo === "Motivo Nao identificado") {
+        relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido.";
+        orientacao.value = "Verificar a integridade do equipamento e dos conectores. Caso necessário, EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade.";
+    } else {
+        relato.value = "";
+        orientacao.value = "";
     }
+}
+
 
     function gerarOS() {
         preencherRelatoOrientacao();
@@ -313,6 +313,7 @@ VALIDADOR:${validador}
 
 </body>
 </html>
+
 
 
 
