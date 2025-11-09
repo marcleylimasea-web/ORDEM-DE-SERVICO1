@@ -257,42 +257,42 @@ function preencherRelatoOrientacao() {
     }
 }
 
-function copiarOS() {
-    const botaoCopiar = document.querySelector(".copy-btn");
-
-    // Regerar o texto com os valores ATUAIS dos campos
-    const horario = document.getElementById("horario").value;
+function gerarOS() {
     const prioridade = document.getElementById("prioridade").value;
-    const tipoOs = document.getElementById("tipoOs").options[document.getElementById("tipoOs").selectedIndex].text;
+    const tipoSelect = document.getElementById("tipoOs");
+    const tipoOs = tipoSelect.options[tipoSelect.selectedIndex].text;
     const titular = document.getElementById("titular").value;
     const endereco = document.getElementById("endereco").value;
     const responsavel = document.getElementById("responsavel").value;
-    const relato = document.getElementById("relato").value; 
-    const orientacao = document.getElementById("orientacao").value;
+    const horario = document.getElementById("horario").value;
+
+    // 🔹 Sempre pega o valor atual dos campos (incluindo edições manuais)
+    const relato = document.getElementById("relato").value.trim();
+    const orientacao = document.getElementById("orientacao").value.trim();
     const validador = document.getElementById("validador").value;
 
-    const textoAtualizado = `
+    // 🔹 Se os campos estiverem vazios, preenche automaticamente
+    if (!relato && !orientacao) {
+        preencherRelatoOrientacao();
+    }
+
+    osTexto = `
 MELHOR HORÁRIO PARA ATENDIMENTO: ${horario}
 PRIORIDADE: ${prioridade}
 TIPO DE O.S.: ${tipoOs}
 TITULAR: ${titular}
 ENDEREÇO, Localização e CTO: ${endereco}
 RESPONSÁVEL QUE RECEBERÁ A EQUIPE: ${responsavel}
-RELATO: ${relato}
-ORIENTAÇÃO PARA OS TÉCNICOS: ${orientacao}
+RELATO: ${document.getElementById("relato").value}
+ORIENTAÇÃO PARA OS TÉCNICOS: ${document.getElementById("orientacao").value}
 VALIDADOR: ${validador}
 `;
 
-    // Copiar o texto atualizado
-    navigator.clipboard.writeText(textoAtualizado).then(() => {
-        const textoOriginal = botaoCopiar.innerText;
-        botaoCopiar.innerText = "✅ Copiado!";
-        botaoCopiar.disabled = true;
-        
-        document.getElementById("osForm").reset();
-        document.getElementById("relato").value = "";
-        document.getElementById("orientacao").value = "";
-
+    document.getElementById("osOutput").innerText = osTexto;
+    document.getElementById("osModal").style.display = "flex";
+    document.querySelector(".copy-btn").style.display = "inline-block";
+    document.querySelector(".fechar").style.display = "inline-block";
+}
         setTimeout(() => {
             botaoCopiar.innerText = textoOriginal;
             botaoCopiar.disabled = false;
@@ -324,6 +324,7 @@ window.onload = function() {
 </script>
 </body>
 </html>
+
 
 
 
