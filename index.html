@@ -172,9 +172,11 @@
     <label>TIPO DE O.S.:</label>
     <select id="tipoOs" onchange="preencherRelatoOrientacao()">
         <option value="">-- Selecione --</option>
+        <option value="sem-conexao">Suporte - Sem conexão</option>
+        <option value="equipamento resetado">Suporte - Equipamento resetado</option>
+        <option value="Motivo Nao identificado">Suporte - Motivo não identificado</option>
         <option value="drop-rompido">Manutenção - Drop rompido</option>
         <option value="potencia-atenuada">Manutenção - Potência atenuada</option>
-        <option value="sem-conexao">Suporte - Sem conexão</option>
         <option value="link loss">Manutenção - link loss</option>
         <option value="Motivo Nao identificado">Manutenção - Motivo não identificado</option>
     </select>
@@ -223,16 +225,20 @@
         const relato = document.getElementById("relato");
         const orientacao = document.getElementById("orientacao");
 
-        if (tipo === "drop-rompido") {
+        if else (tipo === "sem-conexao") {
+            relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido.";
+            orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
+        } else if (tipo === "equipamento resetado") {
+            relato.value = " Cliente informa falta de conexão, sua rede wifi não está mais aparecendo, porém, equipamento está online no UNM"
+            orientaçao.value = " Verificar integridade dos conectores internos e externos, do drop, realizar limpeza com caneta dos conectores e do leitor óptico da onu, verificar a integridade da onu, da fonte de alimentação, da tomada e do equipamento, se necessário, realizar a troca de equipamento - realizar teste de rede nos equipamentos do cliente e habilitar acesso remoto caso não esteja habilitado."
+        } else if (tipo === "link loss") {
+            (tipo === "drop-rompido") {
             relato.value = "Cliente entrou em contato para relatar a falta de conexão à internet. Foi verificado que os cabos da fibra foram rompidos por um caminhão resultando na interrupção do serviço.";
             orientacao.value = "Fazer o lançamento do cabo drop verificando a melhor rota para restabelecer a conexão do cliente. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
         } else if (tipo === "potencia-atenuada") {
             relato.value = "O Cliente comunicou constante instabilidade em sua rede. Foi verificado que a potência que chega até o equipamento está atenuada resultando na interrupção do serviço.";
             orientacao.value = "Verificar a integridade do equipamento, dos cabos e dos conectores com o intuito de normalizar a potência que chega até o equipamento. Realizar todos os testes possíveis com o cliente para esclarecer qualquer dúvida que ele possa ter.";
-        } else if (tipo === "sem-conexao") {
-            relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido.";
-            orientacao.value = "Verificar a integridade do equipamento, Verificar a integridade dos conectores. Caso necessário EFETUAR A TROCA DO EQUIPAMENTO. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
-        } else if (tipo === "link loss") {
+    
             relato.value = "Cliente relata estar sem conexão, foi verificado que o status do equipamento está em link-loss o que indica um possível rompimento da fibra ou defeito no equipamento.";
             orientacao.value = "Verificar a integridade do equipamento, dos cabos e dos conectores. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
         } else if (tipo === "Motivo Nao identificado") {
@@ -308,6 +314,7 @@ VALIDADOR:${validador}
 
 </body>
 </html>
+
 
 
 
