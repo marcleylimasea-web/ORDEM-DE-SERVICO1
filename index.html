@@ -219,7 +219,6 @@
 </div>
 
 <script>
-    <script>
 let osTexto = "";
 function preencherRelatoOrientacao() {
     const tipo = document.getElementById("tipoOs").value.trim();
@@ -258,28 +257,21 @@ function preencherRelatoOrientacao() {
     }
 }
 
-// --- Gera a OS final ---
-function gerarOS() {
-    const tipoSelecionado = document.getElementById("tipoOs").value.trim();
-    const relatoCampo = document.getElementById("relato");
-    const orientacaoCampo = document.getElementById("orientacao");
+function copiarOS() {
+    const botaoCopiar = document.querySelector(".copy-btn");
 
-    // Preenche automático se o campo estiver vazio
-    if (relatoCampo.value.trim() === "" && orientacaoCampo.value.trim() === "") {
-        preencherRelatoOrientacao();
-    }
-
+    // Regerar o texto com os valores ATUAIS dos campos
+    const horario = document.getElementById("horario").value;
     const prioridade = document.getElementById("prioridade").value;
     const tipoOs = document.getElementById("tipoOs").options[document.getElementById("tipoOs").selectedIndex].text;
     const titular = document.getElementById("titular").value;
     const endereco = document.getElementById("endereco").value;
     const responsavel = document.getElementById("responsavel").value;
-    const horario = document.getElementById("horario").value;
-    const relato = relatoCampo.value; 
-    const orientacao = orientacaoCampo.value;
+    const relato = document.getElementById("relato").value; 
+    const orientacao = document.getElementById("orientacao").value;
     const validador = document.getElementById("validador").value;
 
-    osTexto = `
+    const textoAtualizado = `
 MELHOR HORÁRIO PARA ATENDIMENTO: ${horario}
 PRIORIDADE: ${prioridade}
 TIPO DE O.S.: ${tipoOs}
@@ -291,17 +283,8 @@ ORIENTAÇÃO PARA OS TÉCNICOS: ${orientacao}
 VALIDADOR: ${validador}
 `;
 
-    document.getElementById("osOutput").innerText = osTexto;
-    document.getElementById("osModal").style.display = "flex";
-    document.querySelector(".copy-btn").style.display = "inline-block";
-    document.querySelector(".fechar").style.display = "inline-block";
-}
-
-// --- Copia a OS gerada ---
-function copiarOS() {
-    const botaoCopiar = document.querySelector(".copy-btn");
-
-    navigator.clipboard.writeText(osTexto).then(() => {
+    // Copiar o texto atualizado
+    navigator.clipboard.writeText(textoAtualizado).then(() => {
         const textoOriginal = botaoCopiar.innerText;
         botaoCopiar.innerText = "✅ Copiado!";
         botaoCopiar.disabled = true;
@@ -339,42 +322,9 @@ window.onload = function() {
     orientacao.removeAttribute("readonly");
 };
 </script>
-
-    }
-
-    function copiarOS() {
-        const botaoCopiar = document.querySelector(".copy-btn");
-
-        navigator.clipboard.writeText(osTexto).then(() => {
-            const textoOriginal = botaoCopiar.innerText;
-            botaoCopiar.innerText = "✅ Copiado!";
-            botaoCopiar.disabled = true;
-            
-            document.getElementById("osForm").reset();
-            document.getElementById("relato").value = "";
-            document.getElementById("orientacao").value = "";
-
-            setTimeout(() => {
-                botaoCopiar.innerText = textoOriginal;
-                botaoCopiar.disabled = false;
-                fecharModal();
-            }, 3000);
-        }).catch(err => {
-            alert("Erro ao copiar: " + err);
-        });
-    }
-
-    function fecharModal() {
-        document.getElementById("osModal").style.display = "none";
-    }
-
-    window.onload = function() {
-        document.getElementById("osModal").style.display = "none";
-    }
-</script>
-
 </body>
 </html>
+
 
 
 
