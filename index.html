@@ -293,6 +293,18 @@ VALIDADOR: ${validador}
     document.querySelector(".copy-btn").style.display = "inline-block";
     document.querySelector(".fechar").style.display = "inline-block";
 }
+function copiarOS() {
+    const botaoCopiar = document.querySelector(".copy-btn");
+
+    navigator.clipboard.writeText(osTexto).then(() => {
+        const textoOriginal = botaoCopiar.innerText;
+        botaoCopiar.innerText = "✅ Copiado!";
+        botaoCopiar.disabled = true;
+
+        document.getElementById("osForm").reset();
+        document.getElementById("relato").value = "";
+        document.getElementById("orientacao").value = "";
+
         setTimeout(() => {
             botaoCopiar.innerText = textoOriginal;
             botaoCopiar.disabled = false;
@@ -324,6 +336,7 @@ window.onload = function() {
 </script>
 </body>
 </html>
+
 
 
 
