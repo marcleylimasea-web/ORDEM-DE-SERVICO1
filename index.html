@@ -221,10 +221,14 @@
 <script>
     let osTexto = "";
 
-    function preencherRelatoOrientacao() {
-    const tipo = document.getElementById("tipoOs").value.trim();
-    const relato = document.getElementById("relato");
-    const orientacao = document.getElementById("orientacao");
+    ffunction gerarOS() {
+    const tipoSelecionado = document.getElementById("tipoOs").value.trim();
+    const relatoCampo = document.getElementById("relato");
+    const orientacaoCampo = document.getElementById("orientacao");
+    if (relatoCampo.value.trim() === "" && orientacaoCampo.value.trim() === "") {
+        preencherRelatoOrientacao();
+    }
+
     relato.readOnly = false;
     orientacao.readOnly = false;
 
@@ -320,6 +324,7 @@ VALIDADOR:${validador}
 
 </body>
 </html>
+
 
 
 
