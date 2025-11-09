@@ -221,16 +221,13 @@
 <script>
     let osTexto = "";
 
-    ffunction gerarOS() {
-    const tipoSelecionado = document.getElementById("tipoOs").value.trim();
-    const relatoCampo = document.getElementById("relato");
-    const orientacaoCampo = document.getElementById("orientacao");
-    if (relatoCampo.value.trim() === "" && orientacaoCampo.value.trim() === "") {
-        preencherRelatoOrientacao();
+   function preencherRelatoOrientacao() {
+    const tipo = document.getElementById("tipoOs").value.trim();
+    const relato = document.getElementById("relato");
+    const orientacao = document.getElementById("orientacao");
+    if (relato.dataset.editado === "true" || orientacao.dataset.editado === "true") {
+        return; 
     }
-
-    relato.readOnly = false;
-    orientacao.readOnly = false;
 
     if (tipo === "sem-conexao") {
         relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido.";
@@ -332,6 +329,7 @@ VALIDADOR: ${validador}
 
 </body>
 </html>
+
 
 
 
