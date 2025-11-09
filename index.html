@@ -191,11 +191,12 @@
     <input type="text" id="responsavel">
 
 
-    <label>RELATO:</label>
-    <textarea id="relato"></textarea>
+   <label>RELATO:</label>
+        <textarea id="relato" readonly></textarea>
 
     <label>ORIENTAÇÃO PARA OS TÉCNICOS:</label>
-    <textarea id="orientacao"></textarea>
+        <textarea id="orientacao" readonly></textarea>
+
 
     <label>VALIDADOR:</label>
     <select id="validador">
@@ -224,6 +225,8 @@
     const tipo = document.getElementById("tipoOs").value.trim();
     const relato = document.getElementById("relato");
     const orientacao = document.getElementById("orientacao");
+    relato.readOnly = false;
+    orientacao.readOnly = false;
 
     if (tipo === "sem-conexao") {
         relato.value = "O cliente nos informou que está com problemas com sua internet. Tentamos configurar sua conexão remotamente, porém o problema não foi resolvido.";
@@ -317,6 +320,7 @@ VALIDADOR:${validador}
 
 </body>
 </html>
+
 
 
 
