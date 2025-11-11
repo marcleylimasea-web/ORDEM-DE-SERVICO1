@@ -174,6 +174,7 @@
         <option value="sem-conexao">Suporte - Sem conexão</option>
         <option value="velocidade-contratada">Suporte - Velocidade contratada</option>
         <option value="equipamento resetado">Suporte - Equipamento resetado</option>
+        <option value="troca-roteador-incompativel">Manutenção - Troca de roteador por incompatibilidade</option>
         <option value="Motivo Nao identificado">Suporte - Motivo não identificado</option>
         <option value="drop-rompido">Manutenção - Drop rompido</option>
         <option value="potencia-atenuada">Manutenção - Potência atenuada</option>
@@ -239,6 +240,9 @@ function preencherRelatoOrientacao() {
     } else if (tipo === "equipamento resetado") {
         relato.value = "Cliente informa falta de conexão, sua rede Wi-Fi não está mais aparecendo, porém o equipamento está online no UNM.";
         orientacao.value = "Verificar integridade dos conectores internos e externos, do drop, realizar limpeza com caneta dos conectores e do leitor óptico da ONU. Verificar integridade da ONU, da fonte de alimentação e da tomada. Se necessário, realizar a troca de equipamento e habilitar acesso remoto.";
+    } else if (tipo === "troca-roteador-incompativel") {
+    relato.value = "Foi verificado que o roteador atual é incompatível com a velocidade do plano contratado, resultando em limitação de desempenho e instabilidade na conexão.";
+    orientacao.value = "Realizar a substituição do roteador por um modelo compatível com a velocidade contratada, configurando a rede e testando a conectividade junto ao cliente.";
     } else if (tipo === "link loss") {
         relato.value = "Cliente relata estar sem conexão. Foi verificado que o status do equipamento está em link-loss, o que indica um possível rompimento da fibra ou defeito no equipamento.";
         orientacao.value = "Verificar a integridade do equipamento, dos cabos e dos conectores. Efetuar todos os testes de velocidade junto ao cliente e com o setor de Autenticação.";
@@ -336,6 +340,7 @@ window.onload = function() {
 </script>
 </body>
 </html>
+
 
 
 
