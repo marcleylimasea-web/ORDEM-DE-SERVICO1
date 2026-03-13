@@ -160,13 +160,6 @@
         <option value="Tarde">Tarde</option>
         <option value="Comercial">Comercial</option>
     </select>
-    
-    <label>PRIORIDADE:</label>
-    <select id="prioridade">
-        <option value="PADRÃO">Padrão</option>
-        <option value="REINCIDENTE">Reincidente</option>
-        <option value="REVERSÃO DE CANCELAMENTO">Reversão de Cancelamento</option>
-    </select>
 
     <label>TIPO DE O.S.:</label>
     <select id="tipoOs" onchange="preencherRelatoOrientacao()">
@@ -184,6 +177,8 @@
 
     <label>TITULAR:</label>
     <input type="text" id="titular">
+    <label>TELEFONE:</label>
+<input type="text" id="telefone">
 
     <label>ENDEREÇO, Localização e CTO:</label>
     <textarea id="endereco"></textarea>
@@ -210,8 +205,6 @@ function preencherRelatoOrientacao() {
     const tipo = document.getElementById("tipoOs").value.trim();
     const relato = document.getElementById("relato");
     const orientacao = document.getElementById("orientacao");
-
-    // Só preenche se o usuário ainda não editou
     if (relato.dataset.editado === "true" || orientacao.dataset.editado === "true") {
         return;
     }
@@ -247,10 +240,10 @@ function preencherRelatoOrientacao() {
 }
 
 function gerarOS() {
-    const prioridade = document.getElementById("prioridade").value;
     const tipoSelect = document.getElementById("tipoOs");
     const tipoOs = tipoSelect.options[tipoSelect.selectedIndex].text;
     const titular = document.getElementById("titular").value;
+    const telefone = document.getElementById("telefone").value;
     const endereco = document.getElementById("endereco").value;
     const responsavel = document.getElementById("responsavel").value;
     const horario = document.getElementById("horario").value;
@@ -258,7 +251,6 @@ function gerarOS() {
     // 🔹 Sempre pega o valor atual dos campos (incluindo edições manuais)
     const relato = document.getElementById("relato").value.trim();
     const orientacao = document.getElementById("orientacao").value.trim();
-    const validador = document.getElementById("validador").value;
 
     // 🔹 Se os campos estiverem vazios, preenche automaticamente
     if (!relato && !orientacao) {
@@ -266,10 +258,11 @@ function gerarOS() {
     }
 
     osTexto = `
+osTexto = `
 MELHOR HORÁRIO PARA ATENDIMENTO: ${horario}
-PRIORIDADE: ${prioridade}
 TIPO DE O.S.: ${tipoOs}
 TITULAR: ${titular}
+TELEFONE: ${telefone}
 ENDEREÇO, Localização e CTO: ${endereco}
 RESPONSÁVEL QUE RECEBERÁ A EQUIPE: ${responsavel}
 RELATO: ${document.getElementById("relato").value}
@@ -324,6 +317,7 @@ window.onload = function() {
 </script>
 </body>
 </html>
+
 
 
 
