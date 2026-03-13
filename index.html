@@ -174,9 +174,6 @@
         <option value="link loss">Manutenção - link loss</option>
         <option value="Motivo Nao identificado">Manutenção - Motivo não identificado</option>
     </select>
-
-    <label>TITULAR:</label>
-    <input type="text" id="titular">
     <label>TELEFONE:</label>
 <input type="text" id="telefone">
 
@@ -242,7 +239,6 @@ function preencherRelatoOrientacao() {
 function gerarOS() {
     const tipoSelect = document.getElementById("tipoOs");
     const tipoOs = tipoSelect.options[tipoSelect.selectedIndex].text;
-    const titular = document.getElementById("titular").value;
     const telefone = document.getElementById("telefone").value;
     const endereco = document.getElementById("endereco").value;
     const responsavel = document.getElementById("responsavel").value;
@@ -260,7 +256,6 @@ function gerarOS() {
  osTexto = `
 MELHOR HORÁRIO PARA ATENDIMENTO: ${horario}
 TIPO DE O.S.: ${tipoOs}
-TITULAR: ${titular}
 TELEFONE: ${telefone}
 ENDEREÇO, Localização e CTO: ${endereco}
 RESPONSÁVEL QUE RECEBERÁ A EQUIPE: ${responsavel}
